@@ -12,7 +12,8 @@ export default function App() {
     const buttons = [
         { id: 'linear', label: 'Regresión Lineal' },
         { id: 'derivative', label: 'Derivada' },
-        { id: 'bayes', label: 'Bayes' },          // ← ¡este es el que faltaba!
+        { id: 'bayes', label: 'Bayes' },
+        { id: 'coin', label: 'Coin Probability' },
     ]
 
     return (
@@ -41,8 +42,8 @@ export default function App() {
             <div className="visualization-container">
                 {activeVisualization === 'linear' && <LinearRegressionVisualization />}
                 {activeVisualization === 'derivative' && <DerivativeVisualization />}
-                {/* {activeVisualization === 'bayes' && <BayesPlayground />} */}
-                {activeVisualization === 'bayes' && <CoinFlipProbability />}
+                {activeVisualization === 'bayes' && <BayesPlayground />}
+                {activeVisualization === 'coin' && <CoinFlipProbability />}
             </div>
         </div>
     )
