@@ -1,38 +1,49 @@
 import React, { useState } from 'react'
 import LinearRegressionVisualization from './components/LinearRegressionVisualization'
 import DerivativeVisualization from './components/DerivativeVisualization'
+import BayesPlayground from './components/NaiveBayes'
+import CoinFlipProbability from './components/Probability'
 
-function App() {
+
+
+export default function App() {
     const [activeVisualization, setActiveVisualization] = useState('linear')
+
+    const buttons = [
+        { id: 'linear', label: 'Regresión Lineal' },
+        { id: 'derivative', label: 'Derivada' },
+        { id: 'bayes', label: 'Bayes' },          // ← ¡este es el que faltaba!
+    ]
 
     return (
         <div className="p-4">
+            {/* selector */}
             <div className="flex items-center justify-center mb-6">
-                <div className="bg-gray-200 rounded-full p-1">
-                    <button
-                        className={`px-4 py-2 rounded-full ${activeVisualization === 'linear' ? 'bg-blue-500 text-white' : 'bg-transparent'}`}
-                        onClick={() => setActiveVisualization('linear')}
-                    >
-                        Regresión Lineal
-                    </button>
-                    <button
-                        className={`px-4 py-2 rounded-full ${activeVisualization === 'derivative' ? 'bg-blue-500 text-white' : 'bg-transparent'}`}
-                        onClick={() => setActiveVisualization('derivative')}
-                    >
-                        Derivada
-                    </button>
+                <div className="bg-gray-200 rounded-full p-1 flex gap-1">
+                    {buttons.map(({ id, label }) => (
+                        <button
+                            key={id}
+                            onClick={() => setActiveVisualization(id)}
+                            className={`
+                px-4 py-2 rounded-full transition
+                ${activeVisualization === id
+                                    ? 'bg-blue-500 text-white'
+                                    : 'bg-transparent hover:bg-blue-100'}
+              `}
+                        >
+                            {label}
+                        </button>
+                    ))}
                 </div>
             </div>
 
+            {/* visualización activa */}
             <div className="visualization-container">
-                {activeVisualization === 'linear' ? (
-                    <LinearRegressionVisualization />
-                ) : (
-                    <DerivativeVisualization />
-                )}
+                {activeVisualization === 'linear' && <LinearRegressionVisualization />}
+                {activeVisualization === 'derivative' && <DerivativeVisualization />}
+                {/* {activeVisualization === 'bayes' && <BayesPlayground />} */}
+                {activeVisualization === 'bayes' && <CoinFlipProbability />}
             </div>
         </div>
     )
 }
-
-export default App
