@@ -3,6 +3,9 @@ import LinearRegressionVisualization from './components/LinearRegressionVisualiz
 import DerivativeVisualization from './components/DerivativeVisualization'
 import BayesPlayground from './components/NaiveBayes'
 import CoinFlipProbability from './components/Probability'
+import Algebra from './components/Algebra'
+import PCAVisualization from './components/PCA'
+
 
 
 
@@ -14,6 +17,8 @@ export default function App() {
         { id: 'derivative', label: 'Derivada' },
         { id: 'bayes', label: 'Bayes' },
         { id: 'coin', label: 'Coin Probability' },
+        { id: 'algebra', label: 'Algebra' },
+        { id: 'pca', label: 'PCA' },
     ]
 
     return (
@@ -44,6 +49,8 @@ export default function App() {
                 {activeVisualization === 'derivative' && <DerivativeVisualization />}
                 {activeVisualization === 'bayes' && <BayesPlayground />}
                 {activeVisualization === 'coin' && <CoinFlipProbability />}
+                {activeVisualization === 'algebra' && <Algebra />}
+                {activeVisualization === 'pca' && <PCAVisualization />}
             </div>
         </div>
     )
